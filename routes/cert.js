@@ -11,8 +11,8 @@ const certRoutes = (app, fs) => {
             var stdoutChunks = [], stderrChunks = [];
 
             const child = spawn('certbot', [
-                "--noninteractive", "--agree-tos", "--register-unsafely-without-email", `-d ${req.body.domain}`,
-                "certonly", "--webroot", `-w ${process.env.WEBROOT}`
+                "--noninteractive", "--agree-tos", "--register-unsafely-without-email", '-d', req.body.domain,
+                "certonly", "--webroot", '-w', process.env.WEBROOT
             ]);
             
             child.on('error', function(err) {
@@ -54,6 +54,7 @@ const certRoutes = (app, fs) => {
                         success: false,
                         error: stderrContent
                     });
+                    error = true;
                 }
             });
         
